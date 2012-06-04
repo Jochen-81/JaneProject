@@ -1,3 +1,4 @@
+package jane;
 
 import java.awt.List;
 import java.util.HashMap;
@@ -197,7 +198,7 @@ public class DSDVService implements DSDVService_sync, RuntimeService, NeighborDi
 		long sequenceNumber = routingTable.get(myAddress).getSequenceNumber();
 		routingTable.get(myAddress).setSequenceNumber(sequenceNumber + 2);		
 		
-		// Knoten fällt weg => alle dahinter liegenden Knoten auch als notReachable markieren
+		// Knoten fï¿½llt weg => alle dahinter liegenden Knoten auch als notReachable markieren
 		for (DeviceRouteData d : routingTable.values()) {
 			if (d.getNextHop() != null  && d.getNextHop().toString().equals(linkLayerAddress.toString())) {
 				sequenceNumber = d.getSequenceNumber();

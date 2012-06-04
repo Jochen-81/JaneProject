@@ -1,3 +1,4 @@
+package jane;
 
 import de.uni_trier.jane.basetypes.Extent;
 import de.uni_trier.jane.basetypes.Position;
@@ -57,19 +58,19 @@ public class TestSimulation extends Simulation {
 		              {
 						new Position(20,20),
 						new Position(20,150),
-						new Position(20,250),
-						new Position(230,50),
-						new Position(110,120),
-						new Position(100,100),
-						new Position(190,150),
-						new Position(150,190),
-						new Position(190,70),
-						new Position(90,90),
-						new Position(90,80),
-						new Position(70,70),
-						new Position(170,270),
-						new Position(75,75),
-						new Position(170,70)
+//						new Position(20,250),
+//						new Position(230,50),
+//						new Position(110,120),
+//						new Position(100,100),
+//						new Position(190,150),
+//						new Position(150,190),
+//						new Position(190,70),
+//						new Position(90,90),
+//						new Position(90,80),
+//						new Position(70,70),
+//						new Position(170,270),
+//						new Position(75,75),
+//						new Position(170,70)
 						
 					  },
 						new Rectangle(new Extent(300,300))
@@ -78,7 +79,7 @@ public class TestSimulation extends Simulation {
 		mobilitySource = new ClickAndPlayMobilitySourceLocation(fixed,
 				10.0,
 				100.0, 
-				15, 
+				2, 
 				1.0);
 				
 		
@@ -141,7 +142,7 @@ public class TestSimulation extends Simulation {
 		serviceUnit.addService(dsdvService);
 		
 		// ChatService anlegen
-		ChatService chatService = new  ChatService(linkLayerID,neighborID);
+		ChatService chatService = new  ChatService(linkLayerID,neighborID, dsdvService);
 		serviceUnit.addService(chatService);
 		
 	}

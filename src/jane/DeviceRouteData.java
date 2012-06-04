@@ -1,3 +1,4 @@
+package jane;
 
 import java.io.Serializable;
 

@@ -1,3 +1,6 @@
+package jane;
+
+import gui.ChatClientGUIInterface;
 
 import java.awt.List;
 import java.util.HashMap;
@@ -30,16 +33,20 @@ public class ChatService implements  RuntimeService {
 	private LinkLayer_async linkLayer;
 	private NeighborDiscoveryService_sync neighborService;
 	private RuntimeOperatingSystem runtimeOperatingSystem;
+	
+	private ChatClientGUIInterface guiInterface;
 
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public ChatService(ServiceID linkLayerID, ServiceID neighborID){//,DSDVService dsdvService) {
+	public ChatService(ServiceID linkLayerID, ServiceID neighborID, DSDVService dsdvService) {
 		super();
 		this.linkLayerID = linkLayerID;
 		this.neighborID = neighborID;
 		this.dsdvService = dsdvService;
 		serviceID = new EndpointClassID(ChatService.class.getName());
+		
+		guiInterface = new ChatClientGUIInterface(this);
 
 
 	}
@@ -112,6 +119,10 @@ public class ChatService implements  RuntimeService {
 	public Shape getShape() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public DSDVService_sync getDSDV_interface() {
+		return dsdvService;
 	}
 
 

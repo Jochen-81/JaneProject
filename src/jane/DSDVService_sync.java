@@ -1,3 +1,4 @@
+package jane;
 
 
 import java.util.Set;
@@ -7,19 +8,19 @@ import de.uni_trier.jane.basetypes.Address;
 public interface DSDVService_sync {
 	/**
 	*
-	* @return Gibt alle erreichbaren Geräte zurück
+	* @return Gibt alle erreichbaren Gerï¿½te zurï¿½ck
 	*/
 	public Set getAllReachableDevices();
 	/**
 	*
 	*@param Adresse des Zielhops
-	*@return Gibt den nächsten Hop in Richtung des gewünschten Zieles zurück
+	*@return Gibt den nï¿½chsten Hop in Richtung des gewï¿½nschten Zieles zurï¿½ck
 	*/
 	public Address getNextHop(Address destination);
 	/**
 	*
 	*@param Adresse des Zielhops
-	*@return Gibt die Anzahl der Hops zu einem Ziel zurück
+	*@return Gibt die Anzahl der Hops zu einem Ziel zurï¿½ck
 	*/
 	public int getHopCount(Address destination);
 	}
