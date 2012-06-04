@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_Base"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_DebugService"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_Hybrid"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_Platform"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_PlatformServices"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_RuntimeServices"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_Services"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_Simulation"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_SimulationServices"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JANE_Tools"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
