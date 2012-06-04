@@ -5,6 +5,8 @@ import gui.ChatClientGUIInterface;
 import java.awt.List;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Set;
 
 import de.uni_trier.jane.basetypes.Address;
@@ -21,7 +23,7 @@ import de.uni_trier.jane.service.operatingSystem.RuntimeOperatingSystem;
 import de.uni_trier.jane.service.parameter.todo.Parameters;
 import de.uni_trier.jane.visualization.shapes.Shape;
 
-public class ChatService implements  RuntimeService {
+public class ChatService implements  RuntimeService, Observer {
 
 	public static ServiceID serviceID;
 	private ServiceID linkLayerID;
@@ -44,6 +46,7 @@ public class ChatService implements  RuntimeService {
 		this.linkLayerID = linkLayerID;
 		this.neighborID = neighborID;
 		this.dsdvService = dsdvService;
+		dsdvService.addObserver(this);
 		serviceID = new EndpointClassID(ChatService.class.getName());
 		
 		guiInterface = new ChatClientGUIInterface(this);
@@ -123,6 +126,14 @@ public class ChatService implements  RuntimeService {
 
 	public DSDVService_sync getDSDV_interface() {
 		return dsdvService;
+	}
+	
+	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Observer
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		guiInterface.showAllReachableDevices();		
 	}
 
 

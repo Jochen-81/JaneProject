@@ -1,12 +1,11 @@
 package jane;
 
-import java.awt.List;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Observable;
 import java.util.Set;
 
 import de.uni_trier.jane.basetypes.Address;
-import de.uni_trier.jane.basetypes.Position;
 import de.uni_trier.jane.basetypes.ServiceID;
 import de.uni_trier.jane.service.EndpointClassID;
 import de.uni_trier.jane.service.RuntimeService;
@@ -19,7 +18,7 @@ import de.uni_trier.jane.service.operatingSystem.RuntimeOperatingSystem;
 import de.uni_trier.jane.service.parameter.todo.Parameters;
 import de.uni_trier.jane.visualization.shapes.Shape;
 
-public class DSDVService implements DSDVService_sync, RuntimeService, NeighborDiscoveryListener {
+public class DSDVService extends Observable implements DSDVService_sync, RuntimeService, NeighborDiscoveryListener {
 
 	public static ServiceID serviceID;
 	private ServiceID linkLayerID;
@@ -123,6 +122,7 @@ public class DSDVService implements DSDVService_sync, RuntimeService, NeighborDi
 		}
 		if(forwardTable){
 			linkLayer.sendBroadcast(new RouteTableMessage(cloneAndModifyRoutingTable()));
+			routingTableHasChanged();
 		}
 		
 	}
@@ -210,6 +210,7 @@ public class DSDVService implements DSDVService_sync, RuntimeService, NeighborDi
 			}
 		}
 		
+		routingTableHasChanged();
 		linkLayer.sendBroadcast(new RouteTableMessage(cloneAndModifyRoutingTable()));
 	}
 
@@ -226,6 +227,13 @@ public class DSDVService implements DSDVService_sync, RuntimeService, NeighborDi
 	@Override
 	public void updateNeighborData(NeighborDiscoveryData neighborData) {
 
+	}
+	
+	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//Observable
+	private void routingTableHasChanged(){
+		setChanged();
+		notifyObservers();
 	}
 
 }
