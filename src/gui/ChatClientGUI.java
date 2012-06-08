@@ -6,8 +6,9 @@ public class ChatClientGUI extends java.awt.Frame {
     /**
      * Creates new form Gui_Chat_Client
      */
-    public ChatClientGUI() {
+    public ChatClientGUI(ChatClientGUIInterface guiInterface) {
         initComponents();
+        this.guiInterface = guiInterface;
     }
 
     /**
@@ -88,29 +89,19 @@ public class ChatClientGUI extends java.awt.Frame {
     }                         
 
     private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
+    	guiInterface.sendMessage(lstAllReachables.getSelectedItem(), tbMessage.getText());
     }                                       
 
     private void lstAllReachablesActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         // TODO add your handling code here:
     }                                                
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new ChatClientGUI().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify
+    private ChatClientGUIInterface guiInterface;
     private java.awt.Button btnSend;
     java.awt.List lstAllReachables;
     private java.awt.Panel panel1;
-    private java.awt.TextArea tbChat;
+    java.awt.TextArea tbChat;
     private java.awt.TextArea tbMessage;
     private java.awt.Label txtDialogPartner;
     // End of variables declaration

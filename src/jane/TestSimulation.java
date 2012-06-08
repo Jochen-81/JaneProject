@@ -57,7 +57,7 @@ public class TestSimulation extends Simulation {
 		(new Position[]
 		              {
 						new Position(20,20),
-						new Position(20,150),
+						new Position(20,30),
 //						new Position(20,250),
 //						new Position(230,50),
 //						new Position(110,120),
