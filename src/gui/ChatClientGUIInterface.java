@@ -35,15 +35,16 @@ public class ChatClientGUIInterface {
 	}
 
 	public void sendMessage(String to, String message) {
-		to = to.substring(0,to.indexOf(" ")).trim();
-		System.out.println("_"+to+"_"+  addressMap.get(to));
-		gui.tbChat.append("I: " + message + "\n");
+		to = to.substring(0, to.indexOf(" ")).trim();
+		System.out.println("_" + to + "_" + addressMap.get(to));
+		gui.tbChat.append("I" + " to " + to + ":" + message + "\n");
 		chatService.sendChatMessage(message, addressMap.get(to));
+		gui.tbMessage.setText("");
 	}
 
 	public void showMessage(Address sender, String message) {
 		String from = sender.toString();
-		gui.tbChat.append(from + ": " + message + "\n");
+		gui.tbChat.append("from " + from + ": " + message + "\n");
 	}
 
 }

@@ -102,7 +102,7 @@ public class ChatClientGUI extends java.awt.Frame {
     java.awt.List lstAllReachables;
     private java.awt.Panel panel1;
     java.awt.TextArea tbChat;
-    private java.awt.TextArea tbMessage;
+    java.awt.TextArea tbMessage;
     private java.awt.Label txtDialogPartner;
     // End of variables declaration
 }

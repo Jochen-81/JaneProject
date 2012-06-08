@@ -50,13 +50,12 @@ public class ChatService implements RuntimeService, Observer {
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public void handleMessage(Address sender, String message, Address source, Address destination) {
-		System.out.println(sender+" "+source+" "+destination);
 		if (destination.toString().equals(myAddress.toString())) {
 			guiInterface.showMessage(source, message);
 		} else {
 			Address dsdv_next = dsdvService.getNextHop(destination);
 			Address next = translateDSDVAddressToNeighbourAddress(dsdv_next);
-			linkLayer.sendUnicast(next, new ChatMessage(message, myAddress, destination));
+			linkLayer.sendUnicast(next, new ChatMessage(message, source, destination));
 		}
 	}
 
