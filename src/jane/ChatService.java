@@ -57,19 +57,19 @@ public class ChatService implements  RuntimeService, Observer {
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	public void handleChatMessage(String message , Address destination) {
+	public void handleMessage(Address sender, String message, Address source ,Address destination){
 		if ( destination.toString().equals(myAddress.toString()) ){
 			//notify chat listener
 		}
 		else{
 			Address next = dsdvService.getNextHop(destination);
-			linkLayer.sendUnicast(next, new ChatServiceMessage(message,destination));
+			linkLayer.sendUnicast(next, new ChatMessage(message,myAddress,destination));
 		}
 	}
 	
 	public void sendChatMessage (String Message, Address destination){
 		Address next = dsdvService.getNextHop(destination);
-		linkLayer.sendUnicast(next, new ChatServiceMessage(Message,destination));
+		linkLayer.sendUnicast(next, new ChatMessage(Message,myAddress,destination));
 	}
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -90,9 +90,6 @@ public class ChatService implements  RuntimeService, Observer {
 		
 		runtimeOperatingSystem.registerAtService(neighborID,
 				NeighborDiscoveryService.class);
-		
-		
-		
 		
 		
 		//sich selbst in die routing table eintragen
