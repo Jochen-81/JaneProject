@@ -57,8 +57,8 @@ public class TestSimulation extends Simulation {
 		(new Position[]
 		              {
 						new Position(20,20),
-						new Position(20,30),
-//						new Position(20,250),
+						new Position(20,60),
+						new Position(20,150),
 //						new Position(230,50),
 //						new Position(110,120),
 //						new Position(100,100),
@@ -79,7 +79,7 @@ public class TestSimulation extends Simulation {
 		mobilitySource = new ClickAndPlayMobilitySourceLocation(fixed,
 				10.0,
 				100.0, 
-				2, 
+				3, 
 				1.0);
 				
 		

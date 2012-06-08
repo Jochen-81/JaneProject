@@ -6,6 +6,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import de.uni_trier.jane.basetypes.Address;
+import de.uni_trier.jane.basetypes.DeviceID;
 import de.uni_trier.jane.basetypes.ServiceID;
 import de.uni_trier.jane.service.EndpointClassID;
 import de.uni_trier.jane.service.RuntimeService;
@@ -49,17 +50,33 @@ public class ChatService implements RuntimeService, Observer {
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public void handleMessage(Address sender, String message, Address source, Address destination) {
+		System.out.println(sender+" "+source+" "+destination);
 		if (destination.toString().equals(myAddress.toString())) {
-			guiInterface.showMessage(sender, message);
+			guiInterface.showMessage(source, message);
 		} else {
-			Address next = dsdvService.getNextHop(destination);
+			Address dsdv_next = dsdvService.getNextHop(destination);
+			Address next = translateDSDVAddressToNeighbourAddress(dsdv_next);
 			linkLayer.sendUnicast(next, new ChatMessage(message, myAddress, destination));
 		}
 	}
 
 	public void sendChatMessage(String Message, Address destination) {
-		Address next = dsdvService.getNextHop(destination);
+		Address dsdv_next = (Address) dsdvService.getNextHop(destination);
+		Address next = translateDSDVAddressToNeighbourAddress(dsdv_next);
+		
 		linkLayer.sendUnicast(next, new ChatMessage(Message, myAddress, destination));
+	}
+	
+	private Address translateDSDVAddressToNeighbourAddress(Address dsdv_address){
+		Address address = null; 
+		NeighborDiscoveryServiceStub neighborDiscoveryServiceStub = new NeighborDiscoveryServiceStub(
+				runtimeOperatingSystem, neighborID);
+		for(Address a :neighborDiscoveryServiceStub.getNeighbors()){
+			if(a.toString().equals(dsdv_address.toString())){
+				address = a;
+			}
+		}
+		return address;
 	}
 
 	// ////////////////////////////////////////////////////////////////////////////////////////////////////////////
