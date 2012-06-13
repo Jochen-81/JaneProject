@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Rectangle;
+
 
 public class ChatClientGUI extends java.awt.Frame {
 
@@ -20,43 +22,29 @@ public class ChatClientGUI extends java.awt.Frame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        lstAllReachables = new java.awt.List();
         panel1 = new java.awt.Panel();
-        tbChat = new java.awt.TextArea();
+        txtDialogPartner = new java.awt.Label();
         tbMessage = new java.awt.TextArea();
         btnSend = new java.awt.Button();
-        txtDialogPartner = new java.awt.Label();
+        lstAllReachables = new java.awt.List();
+        tbChat = new java.awt.TextArea();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 exitForm(evt);
             }
         });
-        setLayout(new java.awt.GridBagLayout());
-
-        lstAllReachables.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lstAllReachablesActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        add(lstAllReachables, gridBagConstraints);
 
         panel1.setLayout(new java.awt.GridBagLayout());
+
+        txtDialogPartner.setText("Dialog Partner");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 1;
-        panel1.add(tbChat, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        panel1.add(tbMessage, gridBagConstraints);
+        gridBagConstraints.gridy = 0;
+        panel1.add(txtDialogPartner, gridBagConstraints);
+
+        add(panel1, java.awt.BorderLayout.NORTH);
+        add(tbMessage, java.awt.BorderLayout.SOUTH);
 
         btnSend.setActionCommand("btnSendActionCommand");
         btnSend.setLabel("Send");
@@ -65,18 +53,15 @@ public class ChatClientGUI extends java.awt.Frame {
                 btnSendActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        panel1.add(btnSend, gridBagConstraints);
+        add(btnSend, java.awt.BorderLayout.EAST);
 
-        txtDialogPartner.setText("Dialog Partner");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        panel1.add(txtDialogPartner, gridBagConstraints);
-
-        add(panel1, new java.awt.GridBagConstraints());
+        lstAllReachables.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lstAllReachablesActionPerformed(evt);
+            }
+        });
+        add(lstAllReachables, java.awt.BorderLayout.WEST);
+        add(tbChat, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>

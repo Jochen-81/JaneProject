@@ -1,4 +1,4 @@
-package jane;
+package de.htw;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,6 +12,7 @@ import de.uni_trier.jane.service.RuntimeService;
 import de.uni_trier.jane.service.neighbor_discovery.NeighborDiscoveryData;
 import de.uni_trier.jane.service.neighbor_discovery.NeighborDiscoveryListener;
 import de.uni_trier.jane.service.neighbor_discovery.NeighborDiscoveryService;
+import de.uni_trier.jane.service.neighbor_discovery.NeighborDiscoveryServiceStub;
 import de.uni_trier.jane.service.neighbor_discovery.NeighborDiscoveryService_sync;
 import de.uni_trier.jane.service.network.link_layer.LinkLayer_async;
 import de.uni_trier.jane.service.operatingSystem.RuntimeOperatingSystem;
@@ -162,7 +163,9 @@ public class DSDVService extends Observable implements DSDVService_sync, Runtime
 				NeighborDiscoveryService.class);
 		
 		//sich selbst in die routing table eintragen
-		myAddress = runtimeOperatingSystem.getDeviceID();
+		NeighborDiscoveryServiceStub neighborDiscoveryServiceStub = new NeighborDiscoveryServiceStub(
+				runtimeOperatingSystem, neighborID);
+		this.myAddress = neighborDiscoveryServiceStub.getOwnAddress();
 		routingTable.put(myAddress, new DeviceRouteData(myAddress, 0, 0));
 		
 	}

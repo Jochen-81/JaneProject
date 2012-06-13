@@ -1,4 +1,4 @@
-package jane;
+package de.htw;
 
 import de.uni_trier.jane.basetypes.Extent;
 import de.uni_trier.jane.basetypes.Position;

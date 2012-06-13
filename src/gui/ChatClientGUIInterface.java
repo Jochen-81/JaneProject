@@ -2,9 +2,9 @@ package gui;
 
 import java.util.HashMap;
 
+import de.htw.ChatService;
+import de.htw.DSDVService_sync;
 import de.uni_trier.jane.basetypes.Address;
-import jane.ChatService;
-import jane.DSDVService_sync;
 
 public class ChatClientGUIInterface {
 

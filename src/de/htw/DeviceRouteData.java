@@ -1,4 +1,4 @@
-package jane;
+package de.htw;
 
 import java.io.Serializable;
 
