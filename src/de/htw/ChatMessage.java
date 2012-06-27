@@ -40,7 +40,7 @@ public class ChatMessage implements LinkLayerMessage, Serializable {
 
 	@Override
 	public int getSize() {
-		return 1024;
+		return 1024*10;
 	}
 
 	@Override

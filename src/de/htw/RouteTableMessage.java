@@ -55,7 +55,7 @@ public Shape getShape() {
 @Override
 public int getSize() {
 // TODO Auto-generated method stub
-	return 10024;
+	return 1024*10;
 }
 
 }
